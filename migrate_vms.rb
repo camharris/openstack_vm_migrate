@@ -67,7 +67,6 @@ def run_cmd(passed_cmd)
     end
 
     return output_arr
-    #return std_out.read #return output because no error 
   end
 end 
 
@@ -126,7 +125,7 @@ end
 
   # This vm does exist lets migrate
   run_cmd("nova suspend #{old_vm}") #changeme
-  old_vm_state ='shit'
+  old_vm_state =''
   old_vm_task = ''
   timeout_counter=0
 
@@ -185,25 +184,13 @@ end
   old_sums = {}
   new_sums = {}
 
-#  until old_sums == new_sums && syncagain == /n/
   puts "Preparing to rsync to new compute node"
   migrate_vm( vmlist[ old_vm ]['uuid'], vmlist[old_vm]['cur_hypervisor'], new_hypervisor)
 
   #compare md5 on files
   old_sums = check_md5( vmlist[ old_vm ]['uuid'], vmlist[old_vm]['cur_hypervisor'])
   new_sums = check_md5( vmlist[ old_vm ]['uuid'], new_hypervisor ) 
-#    if old_sums != new_sums 
-#      puts "Old md5sums"
-#      pp old_sums
-#      puts "New md5sums"
-#      pp new_sums
-#      puts "One or more of the md5sums are on the new host do not match the old host. Would you like to sync again?"
-#      syncagain = STDIN.gets.chomp
-#    else
-      syncagain='n'
-#    end
-
-#  end
+  syncagain='n'
 
 
   #There should be a check here to verify nothing has changed in the database before we change it
