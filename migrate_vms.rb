@@ -71,9 +71,9 @@ def run_cmd(passed_cmd)
   end
 end 
 
-mysql_user = 'nova'
-mysql_pass = 'nova'
-mysql_srv  = 'ash2-ops-master-vip.sm-us.sm.local'
+mysql_user = ''
+mysql_pass = ''
+mysql_srv  = ''
 timeout = 200
 option = ''
 
